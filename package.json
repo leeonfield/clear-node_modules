@@ -1,0 +1,20 @@
+{
+  "name": "clear-node-module",
+  "version": "0.0.1",
+  "description": "递归清除指定目录下所有 node_modules 目录",
+  "keywords": ["node_modules", "npm", "clear", "tools", "remove"],
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijundong/clear-node_modules.git"
+  },
+  "author": "leeonfield",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lijundong/clear-node_modules/issues"
+  },
+  "homepage": "https://github.com/lijundong/clear-node_modules#readme"
+}

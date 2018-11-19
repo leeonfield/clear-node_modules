@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const log = console.log
 const rootDir = process.argv[2] || './'
 let npmCount = 0
 
-const checkIgnore = (dir) => {
+function checkIgnore(dir) {
   const ignoreList = ['node_modules', '.git']
   if(ignoreList.indexOf(dir) !== -1) {
     return true
@@ -11,7 +13,7 @@ const checkIgnore = (dir) => {
   return false
 }
 
-const checkDirectory = (dir) => {
+function checkDirectory(dir) {
   let stat = fs.statSync(dir)
   if(stat.isDirectory()) {
     return true
@@ -19,7 +21,7 @@ const checkDirectory = (dir) => {
   return false
 }
 
-const removeFile = (path) => {
+function removeFile(path) {
   if(!checkDirectory(path)) {
     fs.unlinkSync(path)
     return
@@ -33,7 +35,7 @@ const removeFile = (path) => {
   }
 }
 
-const getDir = (dir, arr, num) => {
+function getDir (dir, arr, num) {
   let count = num || 0
   let dirList = []
   dir += '/'
@@ -54,7 +56,7 @@ const getDir = (dir, arr, num) => {
   return dirList
 }
 
-const init = (rootDir) => {
+function init(rootDir) {
   let dirList = getDir(rootDir)
   log(`共删除 ${npmCount} 个 node_modules 模块`)
 }
