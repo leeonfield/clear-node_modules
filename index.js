@@ -38,7 +38,9 @@ function removeFile(path) {
 function getDir (dir, arr, num) {
   let count = num || 0
   let dirList = []
-  dir += '/'
+  if(!dir.endsWith('/')) {
+    dir += '/'
+  }
   let newDir = fs.readdirSync(dir)
   dirList = dirList.concat(newDir)
   for(let dirItem of dirList) {
