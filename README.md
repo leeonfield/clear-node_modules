@@ -15,4 +15,4 @@
 
 
 ## License
-MIT. See [LICENSE](./LICENSR.md) for details.
+MIT. See [LICENSE](./LICENSE.md) for details.
