@@ -1,5 +1,5 @@
 {
-  "name": "clear-node-module",
+  "name": "clnms",
   "version": "0.0.1",
   "description": "递归清除指定目录下所有 node_modules 目录",
   "keywords": ["node_modules", "npm", "clear", "tools", "remove"],
