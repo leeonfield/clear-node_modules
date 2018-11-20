@@ -1,7 +1,7 @@
 {
   "name": "clnms",
-  "version": "0.0.2",
-  "description": "递归清除指定目录下所有 node_modules 目录",
+  "version": "0.0.3",
+  "description": "Recursively clear all node_modules in the specified directory",
   "keywords": ["node_modules", "npm", "clear", "tools", "remove"],
   "main": "index.js",
   "bin": "index.js",

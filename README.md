@@ -1,5 +1,8 @@
 # clnms
 
+## Install
+`npm i clnms -g`
+
 ## Doc
 
 ``` shell
