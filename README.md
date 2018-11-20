@@ -14,7 +14,7 @@
 ## Support
 - [x] Linux
 - [x] MacOs
-- [ ] Windows (ing)
+- [x] Windows
 
 
 ## License
