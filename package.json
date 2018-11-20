@@ -1,6 +1,6 @@
 {
   "name": "clnms",
-  "version": "0.0.3",
+  "version": "0.0.3.1",
   "description": "Recursively clear all node_modules in the specified directory",
   "keywords": ["node_modules", "npm", "clear", "tools", "remove"],
   "main": "index.js",
