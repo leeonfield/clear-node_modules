@@ -1,20 +1,26 @@
 {
   "name": "clnms",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Recursively clear all node_modules in the specified directory",
-  "keywords": ["node_modules", "npm", "clear", "tools", "remove"],
+  "keywords": [
+    "npm",
+    "clear",
+    "node_modules",
+    "tools",
+    "remove"
+  ],
   "main": "index.js",
   "bin": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lijundong/clear-node_modules.git"
+    "url": "https://github.com/lijundong/clear-node_modules.git"
   },
   "author": "leeonfield",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lijundong/clear-node_modules/issues"
   },
-  "homepage": "https://github.com/lijundong/clear-node_modules#readme"
+  "homepage": "https://github.com/lijundong/clear-node_modules#readme",
+  "dependencies": {}
 }
