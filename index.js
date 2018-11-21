@@ -16,9 +16,9 @@ function checkIgnore(path) {
 }
 
 // check is a directory or not
-function checkDirectory(path) {
-  let stat = fs.statSync(path)
-  if (stat.isDirectory()) {
+function checkFile(path) {
+  let stat = fs.lstatSync(path)
+  if (stat.isFile() || stat.isSymbolicLink()) {
     return true
   }
   return false
@@ -26,7 +26,7 @@ function checkDirectory(path) {
 
 // remove file & directory
 function removeFile(path) {
-  if (!checkDirectory(path)) {
+  if (checkFile(path)) {
     fs.unlinkSync(path)
     return
   } else {
@@ -35,16 +35,23 @@ function removeFile(path) {
       removeFile(`${path}/${pathItem}`)
     }
     fs.rmdirSync(path)
+    return
   }
 }
 
 // Recursively get all file 
-function getSubfile(path) {
+function getSubfile(path, cb) {
   let pathList = []
+  let subFile = []
   if (!path.endsWith('/')) {
     path += '/'
   }
-  let subFile = fs.readdirSync(path)
+  try {
+    subFile = fs.readdirSync(path)
+  } catch (e) {
+    log('\x1b[31m', `⚠️   Please check directory`)
+    return
+  }
   pathList = pathList.concat(subFile)
   for (let dirItem of pathList) {
     if (dirItem === 'node_modules') {
@@ -52,18 +59,20 @@ function getSubfile(path) {
       removeFile(`${path}${dirItem}`)
       log('\x1b[34m', `🔥  Remove ==> ${path}${dirItem}`)
     }
-    if (checkIgnore(dirItem) || !checkDirectory(path + dirItem)) {
+    if (checkIgnore(dirItem) || checkFile(path + dirItem)) {
       continue
     }
     let recDirList = getSubfile(path + dirItem)
     pathList = pathList.concat(recDirList)
   }
+  cb && cb()
 }
 
 // main function
 function init(rootDir) {
-  getSubfile(rootDir)
-  log('\x1b[32m', `Successfully remove ${npmCount} node_modules`)
+  getSubfile(rootDir, function () {
+    log('\x1b[32m', `🎉  Successfully remove ${npmCount} node_modules`)
+  })
 }
 
 init(rootDir)
