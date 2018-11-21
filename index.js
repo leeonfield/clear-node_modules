@@ -2,7 +2,7 @@
 
 const log = console.log
 const fs = require('fs')
-const rootDir = process.argv[2] || './'
+const rootDir = process.argv[2] || process.cwd()
 
 let npmCount = 0
 
