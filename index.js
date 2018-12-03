@@ -2,6 +2,7 @@
 
 const log = console.log
 const fs = require('fs')
+const Path = require('path')
 const rootDir = process.argv[2] || process.cwd()
 
 let npmCount = 0
@@ -32,7 +33,7 @@ function removeFile(path) {
   } else {
     let pathList = fs.readdirSync(path)
     for (let pathItem of pathList) {
-      removeFile(`${path}/${pathItem}`)
+      removeFile(Path.join(path, pathItem))
     }
     fs.rmdirSync(path)
     return
@@ -43,9 +44,6 @@ function removeFile(path) {
 function getSubfile(path, cb) {
   let pathList = []
   let subFile = []
-  if (!path.endsWith('/')) {
-    path += '/'
-  }
   try {
     subFile = fs.readdirSync(path)
   } catch (e) {
@@ -54,23 +52,24 @@ function getSubfile(path, cb) {
   }
   pathList = pathList.concat(subFile)
   for (let dirItem of pathList) {
+    let dirItemPath = Path.join(path, dirItem)
     if (dirItem === 'node_modules') {
       npmCount++
-      removeFile(`${path}${dirItem}`)
-      log('\x1b[34m', `🔥  Remove ==> ${path}${dirItem}`)
+      removeFile(Path.join(path, dirItem))
+      log('\x1b[34m', `🔥  Remove ==> `, dirItemPath)
     }
-    if (checkIgnore(dirItem) || checkFile(path + dirItem)) {
+    if (checkIgnore(dirItem) || checkFile(dirItemPath)) {
       continue
     }
-    let recDirList = getSubfile(path + dirItem)
+    let recDirList = getSubfile(dirItemPath)
     pathList = pathList.concat(recDirList)
   }
   cb && cb()
 }
 
 // main function
-function init(rootDir) {
-  getSubfile(rootDir, function () {
+function init(dir) {
+  getSubfile(dir, function () {
     log('\x1b[32m', `🎉  Successfully remove ${npmCount} node_modules`)
   })
 }
