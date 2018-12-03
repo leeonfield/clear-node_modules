@@ -1,6 +1,6 @@
 {
   "name": "clnms",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Recursively clear all node_modules in the specified directory",
   "keywords": [
     "npm",
